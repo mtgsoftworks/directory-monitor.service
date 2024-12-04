@@ -1,17 +1,18 @@
 [Unit]
-Description=Directory Monitor Service
-After=network.target
+# Servisin açıklaması ve hangi servislerin ardından çalışması gerektiği belirtiliyor.
+Description=Directory Monitor Service  # Servisin adı veya açıklaması.
 
 [Service]
-Type=simple
-User=mtg
-Group=mtg
-WorkingDirectory=/home/mtg/bsm
-ExecStart=/usr/bin/python3 /home/mtg/bsm/directory_monitor.py
-Restart=always
-RestartSec=3
-StandardOutput=append:/home/mtg/bsm/logs/service.log
-StandardError=append:/home/mtg/bsm/logs/service.log
+# Servisin çalışma durumu ve nasıl başlatılacağı tanımlanır.
+Type=simple  # Servisin başlatılma biçimi. Basit bir servis (yani arka planda çalışan bir komut değil).
+User=mtg  # Servisin çalışacağı kullanıcı adı.
+Group=mtg  # Servisin çalışacağı grup adı.
+WorkingDirectory=/home/mtg/bsm  # Servisin çalışacağı dizin.
+ExecStart=/usr/bin/python3 /home/mtg/bsm/directory_monitor.py  # Servisin çalıştıracağı komut. Burada Python betiği çalıştırılacak.
+Restart=always  # Eğer servis çökerse veya kapanırsa, her zaman yeniden başlatılacak.
+RestartSec=3  # Servisin yeniden başlatılmadan önce bekleyeceği süre (saniye cinsinden).
+StandardOutput=append:/home/mtg/bsm/logs/service.log  # Servisin standart çıktısı, belirtilen log dosyasına eklenir.
+StandardError=append:/home/mtg/bsm/logs/service.log  # Servisin standart hata çıktısı, aynı log dosyasına eklenir.
 
 [Install]
-WantedBy=multi-user.target
+# Servisin hangi durumlarda etkinleştirileceği belirtilir.
