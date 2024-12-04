@@ -1,0 +1,17 @@
+[Unit]
+Description=Directory Monitor Service
+After=network.target
+
+[Service]
+Type=simple
+User=mtg
+Group=mtg
+WorkingDirectory=/home/mtg/bsm
+ExecStart=/usr/bin/python3 /home/mtg/bsm/directory_monitor.py
+Restart=always
+RestartSec=3
+StandardOutput=append:/home/mtg/bsm/logs/service.log
+StandardError=append:/home/mtg/bsm/logs/service.log
+
+[Install]
+WantedBy=multi-user.target
